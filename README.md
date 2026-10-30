@@ -12,6 +12,6 @@ Set `PORT` to change the server port, `BASE_URL` to set the public address for g
 
 ## Deploy on Vercel
 
-This project has a Vercel Node server entry point (`server.js`). Connect an Upstash Redis database to the Vercel project before deploying. The integration must provide `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in Production. The app refuses to start on Vercel without these variables so accounts and click counts are never saved to temporary server files. Vercel supplies the production domain for generated short links; `BASE_URL` can override it.
+This project has a Vercel Node server entry point (`server.js`). Connect an Upstash Redis database to the Vercel project before deploying. The app accepts the integration's `KV_REST_API_URL` and `KV_REST_API_TOKEN` variables, or `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`. The app refuses to start on Vercel without a complete pair so accounts and click counts are never saved to temporary server files. Vercel supplies the production domain for generated short links; `BASE_URL` can override it.
 
 Local development still uses the JSON files in `data/`. They are excluded from Git and are not automatically copied to the deployed database.

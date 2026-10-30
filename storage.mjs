@@ -66,7 +66,7 @@ function localStore() {
 
 async function redisStore() {
   const { Redis } = await import('@upstash/redis');
-  const redis = new Redis({ url: process.env.UPSTASH_REDIS_REST_URL, token: process.env.UPSTASH_REDIS_REST_TOKEN });
+  const redis = new Redis({ url: redisUrl, token: redisToken });
   const prefix = 'shortener:';
   const linkKey = code => `${prefix}link:${code}`;
   const userKey = id => `${prefix}user:${id}`;
@@ -117,8 +117,10 @@ async function redisStore() {
   };
 }
 
-const hasRedisUrl = Boolean(process.env.UPSTASH_REDIS_REST_URL);
-const hasRedisToken = Boolean(process.env.UPSTASH_REDIS_REST_TOKEN);
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+const hasRedisUrl = Boolean(redisUrl);
+const hasRedisToken = Boolean(redisToken);
 if (hasRedisUrl !== hasRedisToken) throw new Error('Both Upstash Redis environment variables are required.');
 if (process.env.VERCEL && !hasRedisUrl) throw new Error('Connect Upstash Redis before deploying.');
 export const storage = await (hasRedisUrl ? redisStore() : localStore());
