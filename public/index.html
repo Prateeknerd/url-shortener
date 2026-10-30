@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eef2f8">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="page-header">
+        <div class="heading-icon" aria-hidden="true">↗</div>
+        <div>
+          <h1>URL Shortener</h1>
+          <p>Create links and track their clicks.</p>
+        </div>
+        <div class="account-menu"><span id="account-email"></span><button id="logout-button" type="button">Log out</button></div>
+      </header>
+
+      <section class="shorten-card" aria-labelledby="shorten-title">
+        <div class="card-heading">
+          <div>
+            <span class="eyebrow">NEW LINK</span>
+            <h2 id="shorten-title">Shorten a URL</h2>
+          </div>
+          <span class="card-decoration" aria-hidden="true">↗</span>
+        </div>
+        <form id="shorten-form">
+          <label for="url">Paste your link</label>
+          <div class="form-row">
+            <input id="url" name="url" type="text" inputmode="url" placeholder="https://example.com/long-link" required autofocus>
+            <button id="submit-button" type="submit">Shorten <span aria-hidden="true">→</span></button>
+          </div>
+          <label for="title" class="title-label">Title <span>(optional)</span></label>
+          <input id="title" name="title" class="title-input" type="text" maxlength="80" placeholder="A name to recognise this link">
+        </form>
+        <p id="error" class="error" role="alert" hidden></p>
+        <div id="result" class="result" hidden>
+          <div>
+            <span class="result-label">SHORT LINK READY</span>
+            <a id="short-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+          </div>
+          <button id="copy-button" type="button">Copy link</button>
+        </div>
+      </section>
+
+      <section class="analytics" aria-labelledby="analytics-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">OVERVIEW</span>
+            <h2 id="analytics-title">Analytics</h2>
+          </div>
+          <button id="refresh-button" class="refresh-button" type="button" aria-label="Refresh analytics">↻ <span>Refresh</span></button>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card"><span>Total links</span><strong id="total-links">0</strong></div>
+          <div class="stat-card"><span>Total clicks</span><strong id="total-clicks">0</strong></div>
+          <div class="stat-card"><span>Top link clicks</span><strong id="top-clicks">0</strong></div>
+        </div>
+
+        <div class="links-panel">
+          <div class="links-heading"><h3>Your links</h3><span id="link-count">0 links</span></div>
+          <div id="links-list" class="links-list" aria-live="polite"><p class="empty">No links yet. Create one above to get started.</p></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

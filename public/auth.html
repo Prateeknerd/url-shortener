@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eef2f8">
+    <title>Account · URL Shortener</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/auth.js" defer></script>
+  </head>
+  <body class="auth-page">
+    <main class="auth-card">
+      <div class="heading-icon" aria-hidden="true">↗</div>
+      <h1 id="auth-title">Welcome back</h1>
+      <p id="auth-description">Sign in to manage your links.</p>
+      <form id="auth-form">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" autocomplete="current-password" required>
+        <p id="auth-error" class="error" role="alert" hidden></p>
+        <button id="auth-submit" type="submit">Log in</button>
+      </form>
+      <p id="auth-switch" class="auth-switch">New here? <a href="/register">Create an account</a></p>
+    </main>
+  </body>
+</html>
